@@ -8,6 +8,8 @@
 define('NF',realpath('./'));//代码目录
 define('CORE',NF.'/core');//核心文件
 define('APP',NF.'/app');//项目目录
+define('MODULE','app');//模块
+
 define('DEBUG',true);
 
 if(DEBUG){

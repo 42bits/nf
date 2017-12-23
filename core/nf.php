@@ -14,8 +14,18 @@ class nf
 
     public static function run()
     {
-        p('ok');
-        $route = new \core\route();
+        $route = new \core\lib\route();
+        $ctrlClss = $route->ctrl;
+        $action = $route->action;
+        $ctrlFile = APP.'/ctrl/'.$ctrlClss.'Ctrl.php';
+        $ctrlClass = '\\'.MODULE.'\ctrl\\'.$ctrlClss.'Ctrl';
+        if(is_file($ctrlFile)){
+            include $ctrlFile;
+            $ctrl = new $ctrlClass();
+            $ctrl->$action();
+        }else{
+            throw new \Exception('找不到控制器:.'.$ctrlClss);
+        }
     }
 
     public static function load($class)
@@ -29,7 +39,7 @@ class nf
                 include $file;
                 self::$classMap[$class] = $class;
             } else {
-                return false;
+                throw new \Exception('找不到类文件:.'.$class);
             }
         }
     }
