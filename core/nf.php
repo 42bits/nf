@@ -14,18 +14,12 @@ class nf
 
     public static function run()
     {
-        $route = new \core\lib\route();
+        $route = new \core\lib\route;
         $ctrlClss = $route->ctrl;
         $action = $route->action;
-        $ctrlFile = APP.'/ctrl/'.$ctrlClss.'Ctrl.php';
         $ctrlClass = '\\'.MODULE.'\ctrl\\'.$ctrlClss.'Ctrl';
-        if(is_file($ctrlFile)){
-            include $ctrlFile;
-            $ctrl = new $ctrlClass();
-            $ctrl->$action();
-        }else{
-            throw new \Exception('找不到控制器:.'.$ctrlClss);
-        }
+        $ctrl = new $ctrlClass;
+        $ctrl->$action();
     }
 
     public static function load($class)
