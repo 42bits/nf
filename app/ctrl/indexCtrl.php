@@ -10,6 +10,9 @@ namespace app\ctrl;
 class indexCtrl
 {
     public function index(){
-        p('it is index ctrl!');
+        $model = new \core\lib\mode();
+        $sql = "select * from t_user";
+        $ret = $model->query($sql);
+        p($ret->fetchAll(\PDO::FETCH_UNIQUE));
     }
 }
