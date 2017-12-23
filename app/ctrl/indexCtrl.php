@@ -10,7 +10,10 @@ namespace app\ctrl;
 class indexCtrl extends \core\nf
 {
     public function index(){
-
+        /*$model = new \core\lib\mode;
+        $sql = "select * from t_user";
+        $ret = $model->query($sql);
+        p($ret->fetchAll());*/
         $title = 'it is a php 框架';
         $data = 'hello world';
         $this->assign('title',$title);

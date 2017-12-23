@@ -8,16 +8,13 @@
 
 namespace core\lib;
 
-
 class mode extends \PDO
 {
     public function __construct()
     {
-        $dsn = 'mysql:host=localhost;dbname=test';
-        $username = 'root';
-        $passwd= '';
+        $dataBase = conf::get('dataBase');
         try{
-            parent::__construct($dsn, $username, $passwd);
+            parent::__construct($dataBase['DSN'], $dataBase['USERNAME'], $dataBase['PASSWD']);
         }catch (\PDOException $e){
             p($e->getMessage());
         }

@@ -29,7 +29,7 @@ class route
                 $this->action = $pathArr[1];
                 unset($pathArr[1]);
             }else{
-                $this->action = 'index';
+                $this->action = conf::get('route','ACTION');
             }
             $count = count($pathArr) + 2;
             $i = 2;
@@ -40,8 +40,8 @@ class route
                 $i += 2;
             }
         }else{
-            $this->ctrl = 'index';
-            $this->action = 'index';
+            $this->ctrl = conf::get('route','CTRL');;
+            $this->action = conf::get('route','ACTION');;
         }
     }
 }
