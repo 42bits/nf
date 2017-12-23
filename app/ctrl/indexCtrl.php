@@ -7,12 +7,14 @@
  */
 namespace app\ctrl;
 
-class indexCtrl
+class indexCtrl extends \core\nf
 {
     public function index(){
-        $model = new \core\lib\mode();
-        $sql = "select * from t_user";
-        $ret = $model->query($sql);
-        p($ret->fetchAll(\PDO::FETCH_UNIQUE));
+
+        $title = 'it is a php 框架';
+        $data = 'hello world';
+        $this->assign('title',$title);
+        $this->assign('data',$data);
+        $this->display('index.html');
     }
 }

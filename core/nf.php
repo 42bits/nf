@@ -11,13 +11,13 @@ namespace core;
 class nf
 {
     public static $classMap = [];
-
+    public $assign;
     public static function run()
     {
         $route = new \core\lib\route;
         $ctrlClss = $route->ctrl;
         $action = $route->action;
-        $ctrlClass = '\\'.MODULE.'\ctrl\\'.$ctrlClss.'Ctrl';
+        $ctrlClass = '\\' . MODULE . '\ctrl\\' . $ctrlClss . 'Ctrl';
         $ctrl = new $ctrlClass;
         $ctrl->$action();
     }
@@ -33,8 +33,20 @@ class nf
                 include $file;
                 self::$classMap[$class] = $class;
             } else {
-                throw new \Exception('找不到类文件:.'.$class);
+                throw new \Exception('找不到类文件:.' . $class);
             }
+        }
+    }
+
+    public function assign($name,$value){
+        $this->assign[$name] = $value;
+    }
+
+    public function display($file){
+        $viewFile = APP.'/views/'.$file;
+        if (is_file($viewFile)){
+            extract($this->assign);
+            include $viewFile;
         }
     }
 }
