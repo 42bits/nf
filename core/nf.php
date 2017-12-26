@@ -47,8 +47,13 @@ class nf
     public function display($file){
         $viewFile = APP.'/views/'.$file;
         if (is_file($viewFile)){
-            extract($this->assign);
-            include $viewFile;
+            $loader = new \Twig_Loader_Filesystem(APP.'/views');
+            $twig = new \Twig_Environment($loader, array(
+                'cache' => NF.'/log/twig',
+                'debug'=>DEBUG
+            ));
+            $template = $twig->load($file);
+            $template->display($this->assign?$this->assign:'');
         }
     }
 }

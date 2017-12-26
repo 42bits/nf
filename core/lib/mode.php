@@ -8,15 +8,13 @@
 
 namespace core\lib;
 
-class mode extends \PDO
+use Medoo\Medoo;
+
+class mode extends Medoo
 {
     public function __construct()
     {
         $dataBase = conf::get('dataBase');
-        try{
-            parent::__construct($dataBase['DSN'], $dataBase['USERNAME'], $dataBase['PASSWD']);
-        }catch (\PDOException $e){
-            p($e->getMessage());
-        }
+        parent::__construct($dataBase);
     }
 }
