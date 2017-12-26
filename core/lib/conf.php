@@ -16,16 +16,15 @@ class conf
             $confFile = NF.'/core/config/'.$name.'.php';
             if(is_file($confFile)){
                 self::$conf[$name] = include $confFile;
-                return self::$conf[$name];
             }else{
                 return false;
             }
-        }else{
+        }
             if(empty($key)){
                 return self::$conf[$name];
             }else{
                 return isset(self::$conf[$name][$key]) ? self::$conf[$name][$key] : false;
             }
-        }
+
     }
 }

@@ -5,6 +5,9 @@
  * 加载函数库
  *启动框架
  */
+
+date_default_timezone_set('PRC');
+
 define('NF',realpath('./'));//代码目录
 define('CORE',NF.'/core');//核心文件
 define('APP',NF.'/app');//项目目录

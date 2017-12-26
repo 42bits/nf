@@ -14,12 +14,14 @@ class nf
     public $assign;
     public static function run()
     {
+        \core\lib\log::init();
         $route = new \core\lib\route;
-        $ctrlClss = $route->ctrl;
+        $ctrl = $route->ctrl;
         $action = $route->action;
-        $ctrlClass = '\\' . MODULE . '\ctrl\\' . $ctrlClss . 'Ctrl';
-        $ctrl = new $ctrlClass;
-        $ctrl->$action();
+        $ctrlClass = '\\' . MODULE . '\ctrl\\' . $ctrl . 'Ctrl';
+        $ctrlC = new $ctrlClass;
+        $ctrlC->$action();
+        \core\lib\log::log('ctrl:'.$ctrl.' action:'.$action);
     }
 
     public static function load($class)
